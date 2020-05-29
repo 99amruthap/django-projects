@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+    	.centerdv{
+    		margin-top: 5%;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-bottom: 10%;
+    		text-align: center;
+    	}
+
+    	.formcss{
+    		
+    		margin-top: 5%;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-bottom: 5%;
+    		text-align: center;
+    		width: 80%;
+    	}
+    </style>
+    
+</head>
+<body>
+
+	<div class="centerdv jumbotron container">
+		<h1> SIMPLE SURVEY </h1>
+		<p> Take Survey</p>
+
+		<p><a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#surveyID">Take a Survey</a></p>
+		<p><a class="btn btn-info btn-lg" role="button" data-toggle="modal" data-target="#adminLogin">Admin Login</a></p>
+		
+	</div>
+
+	<div class = "modal fade" role="dialogue" id="surveyID">
+		<div class="modal-dialogue modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Enter Survey ID</h4>					
+				</div>
+
+					<form method="POST"  class="formcss" action ={% url 'load-survey' %}>
+						{% csrf_token %}
+						<input type="text" name="survey_view" class="form_control">
+						<input type="submit" value="Go!" class="btn btn-success">
+					</form>
+
+			</div>			
+		</div>		
+	</div>
+
+	<!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+
+
+	<div class = "modal fade" role="dialogue" id="adminLogin">
+		<div class="modal-dialogue modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Login as Admin</h4>
+				</div>
+
+					<form method="POST"  class="formcss" action={% url 'admin-login' %}>
+						{% csrf_token %}
+						<b>Username: </b>
+					<input type="text" name="username" class="form_control"><br>
+					<b>Password:</b>
+					<input type="password" name="password" class="form_control"><br>
+					<br>
+					<input type="submit" name="submit" class="btn btn-success" value="Login">
+					</form>
+
+			</div>
+		</div>		
+	</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+    	.centerdv{
+    		margin-top: 5%;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-bottom: 10%;
+    		text-align: center;
+    	}
+
+    	.formcss{
+
+    		margin-top: 5%;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-bottom: 5%;
+    		text-align: center;
+    		width: 80%;
+    	}
+
+	.centerform
+	{
+		margin-left: auto;
+		margin-right: auto;
+		width: 45%;
+	}
+
+    </style>
+
+</head>
+<body>
+
+	   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href={%'root'%}>Survey Site</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Add Survey</a></li>
+            <li><a href={% url 'admin-panel'%}>View Survey Data</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class = "centerdv container">
+    	<div class = "page-header">
+    		<h2>Add a choice to {{question.question_text}}</h2>
+    	</div>
+    	<br>
+    	<form method = "POST"  class = "centerform" action={% 'admin-choice-add' %}>
+        {% csrf_token %}
+    		<b>Question Text</b>
+    		    <input type = "text" class = "form-control" name = "choice_text">
+    		<br>
+            <p>
+                <input type = "submit" class= "btn btn-info" value = "Save Choice and Add New">
+                <a href = {% url 'admin-panel' %} class  = 'btn btn-success'>Finish (will not save current Choice)</a>
+                <a href = {% url 'admin-question-add-view' %} class  = 'btn btn-primary'>New Question</a>
+            </p>
+    	</form>
+    </div>
+
+</body>
+</html>
